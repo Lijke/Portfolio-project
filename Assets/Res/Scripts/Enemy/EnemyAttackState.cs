@@ -5,16 +5,20 @@ using UnityEngine;
 public class EnemyAttackState : EnemyBaseState{
 
     public override void EnterState(EnemyStateManager enemyStateManager){
-        throw new System.NotImplementedException();
+        Debug.LogError("EnemyAttackState start");
     }
 
     public override void UpdateState(EnemyStateManager enemyStateManager){
-        if (true){
-            enemyStateManager.SwitchState(enemyStateManager.attackState);
-        }
+        
     }
 
     public override void OnCollisionEnter(EnemyStateManager enemyStateManager){
         throw new System.NotImplementedException();
     }
+
+    public override void SwitchState(EnemyBaseState enemyBaseState){
+        throw new System.NotImplementedException();
+    }
+    
+    
 }

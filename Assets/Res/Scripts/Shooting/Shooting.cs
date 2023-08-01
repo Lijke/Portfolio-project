@@ -56,7 +56,6 @@ public class Shooting : MonoBehaviour{
         //Check if allowed to hold down button and take corresponding input
  
         if (allowButtonHold){
-            Debug.LogError(inputs.shoot);
             shooting = inputs.shoot;
         }
 
