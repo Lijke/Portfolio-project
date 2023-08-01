@@ -10,7 +10,9 @@ public class EnemyStateManager : MonoBehaviour{
     public EnemyMoveState moveState= new ();
     public EnemyAttackState attackState = new();
     [SerializeField] private NavMeshAgent navMeshAgent;
+    [SerializeField] private Animator animator;
     FirstPersonController player => FirstPersonController.Instance;
+    public EnemyAnimatorController enemyAnimatorController;
 
     public NavMeshAgent GetNavMeshAgent(){
         return navMeshAgent;
@@ -32,5 +34,9 @@ public class EnemyStateManager : MonoBehaviour{
 
     public FirstPersonController GetPlayer(){
         return player;
+    }
+
+    public Animator GetAnimator(){
+        return animator;
     }
 }
