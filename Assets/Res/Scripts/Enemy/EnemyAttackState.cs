@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class EnemyAttackState : EnemyBaseState{
             animator = enemyStateManager.GetAnimator();
         }
 
-        if (attackParameter == null){
+        if (String.IsNullOrEmpty(attackParameter)){
             attackParameter = enemyStateManager.enemyAnimatorController.enemyAnimatorHashManager.attackParameter;
         }
 
