@@ -6,30 +6,38 @@ using UnityEngine.AI;
 
 public class EnemyMoveState : EnemyBaseState{
     private EnemyStateManager enemyStateManager;
-    [SerializeField] private NavMeshAgent navMeshAgent;
-    [SerializeField] private FirstPersonController player;
+    private NavMeshAgent navMeshAgent;
+    private FirstPersonController player;
+    [SerializeField] private float attackDistance = 0.5f;
 
     public override void EnterState(EnemyStateManager enemyStateManager){
+        
         navMeshAgent = enemyStateManager.GetNavMeshAgent();
         player = enemyStateManager.GetPlayer();
         this.enemyStateManager = enemyStateManager;
+        if (IsAttackDistance()){
+            SwitchState(enemyStateManager.attackState);
+        }
+        enemyStateManager.GetAnimator().SetBool("Move",true);
     }
 
     public override void UpdateState(EnemyStateManager enemyStateManager){
         if (navMeshAgent == null && player == null){
             return;
         }
-
-        navMeshAgent.SetDestination(GetPlayerTransform());
-        
-
         if (IsAttackDistance()){
             SwitchState(enemyStateManager.attackState);
         }
+
+        navMeshAgent.SetDestination(GetPlayerTransform());
+    }
+
+    public override void OnCollisionEnter(EnemyStateManager enemyStateManager, Collider collision){
+        
     }
 
     private bool IsAttackDistance(){
-        if (Vector3.Distance(player.transform.position, enemyStateManager.transform.position) < 0.03f){
+        if (Vector3.Distance(player.transform.position, enemyStateManager.transform.position) < attackDistance){
             return true;
         }
 
@@ -40,11 +48,10 @@ public class EnemyMoveState : EnemyBaseState{
         return player.transform.position;
     }
 
-    public override void OnCollisionEnter(EnemyStateManager enemyStateManager){
-        throw new System.NotImplementedException();
-    }
+ 
 
     public override void SwitchState(EnemyBaseState enemyBaseState){
+        enemyStateManager.GetAnimator().SetBool("Move",false);
         enemyStateManager.SwitchState(enemyBaseState);
     }
 }

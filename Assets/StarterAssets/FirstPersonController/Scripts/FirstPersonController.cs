@@ -10,8 +10,10 @@ namespace StarterAssets
 	[RequireComponent(typeof(PlayerInput))]
 #endif
 	public class FirstPersonController : MonoBehaviour{
-
+		
 		public static FirstPersonController Instance;
+
+		public Health health;
 		[Header("Player")]
 		[Tooltip("Move speed of the character in m/s")]
 		public float MoveSpeed = 4.0f;

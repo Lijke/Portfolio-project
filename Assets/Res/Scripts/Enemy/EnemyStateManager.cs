@@ -13,7 +13,7 @@ public class EnemyStateManager : MonoBehaviour{
     [SerializeField] private Animator animator;
     FirstPersonController player => FirstPersonController.Instance;
     public EnemyAnimatorController enemyAnimatorController;
-
+    public EnemyStatsSO enemyStatsSo;
     public NavMeshAgent GetNavMeshAgent(){
         return navMeshAgent;
     }
@@ -22,7 +22,7 @@ public class EnemyStateManager : MonoBehaviour{
         currentState = moveState;
         currentState.EnterState(this);
     }
-
+    
     private void Update(){
         currentState.UpdateState(this);
     }

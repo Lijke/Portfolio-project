@@ -21,6 +21,7 @@ public class EnemyAnimatorController : MonoBehaviour{
 
     public void AddForEnterState(UnityAction<StateInfo> onEnterState) {
         behaviourSolver.OnEnter.AddListener(onEnterState);
+       
     }
     
     void SetEnterState(StateInfo info){
