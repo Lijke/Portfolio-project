@@ -6,4 +6,5 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SpawnerStatsSO", menuName = "ScriptableObjects/SpawnerStatsSO")]
 public class SpawnerStatsSO : ScriptableObject{
     public float distanceFromPlayer = 50f;
+    public float maxEnemyCount = 50f;
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Health : MonoBehaviour{
     public int currentHealth;
     public int maxHealth;
+    public Action<int> takeDamageAction;
 
     private void Awake(){
         currentHealth = maxHealth;
@@ -15,6 +16,7 @@ public class Health : MonoBehaviour{
         currentHealth -= dealDamage;
         if (currentHealth <= 0){
             Debug.Log("[Health] Health <= 0");
+            takeDamageAction?.Invoke(currentHealth);
         }
     }
 }

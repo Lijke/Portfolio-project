@@ -14,6 +14,7 @@ public class EnemyStateManager : MonoBehaviour{
     FirstPersonController player => FirstPersonController.Instance;
     public EnemyAnimatorController enemyAnimatorController;
     public EnemyStatsSO enemyStatsSo;
+    public Health health;
     public NavMeshAgent GetNavMeshAgent(){
         return navMeshAgent;
     }
@@ -21,8 +22,21 @@ public class EnemyStateManager : MonoBehaviour{
     private void Start(){
         currentState = moveState;
         currentState.EnterState(this);
+        if (health != null){
+            health.takeDamageAction += CheckHealth;
+        }
     }
-    
+
+    private void OnDestroy(){
+        health.takeDamageAction += CheckHealth;
+    }
+
+    private void CheckHealth(int takenDamage){
+        if (takenDamage <= 0){
+            //return to pool
+        }
+    }
+
     private void Update(){
         currentState.UpdateState(this);
     }
