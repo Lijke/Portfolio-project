@@ -9,12 +9,15 @@ public class EnemyStateManager : MonoBehaviour{
     private EnemyBaseState currentState;
     public EnemyMoveState moveState= new ();
     public EnemyAttackState attackState = new();
+    public EnemyDeathState enemyDeathState = new();
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Animator animator;
     FirstPersonController player => FirstPersonController.Instance;
     public EnemyAnimatorController enemyAnimatorController;
     public EnemyStatsSO enemyStatsSo;
     public Health health;
+
+    public UiHealthBar uiHealthBar;
     public NavMeshAgent GetNavMeshAgent(){
         return navMeshAgent;
     }
@@ -32,9 +35,15 @@ public class EnemyStateManager : MonoBehaviour{
     }
 
     private void CheckHealth(int takenDamage){
+        uiHealthBar.SetupBar(health);
         if (takenDamage <= 0){
-            //return to pool
+            currentState = enemyDeathState;
+            currentState.EnterState(this);
         }
+    }
+
+    public void OnDeath(){
+        transform.root.gameObject.SetActive(false);
     }
 
     private void Update(){

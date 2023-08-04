@@ -13,5 +13,9 @@ public class UiHealthBar : MonoBehaviour{
 
     public void SetupBar(float maxHealth, float currentHealth){
         image.fillAmount = currentHealth / maxHealth;
-    } 
+    }
+
+    public void SetupBar(Health health){
+        image.fillAmount = (float)health.currentHealth / (float)health.maxHealth;
+    }
 }

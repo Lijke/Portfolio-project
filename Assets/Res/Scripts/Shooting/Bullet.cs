@@ -11,7 +11,11 @@ public class Bullet : MonoBehaviour{
         if (collider.CompareTag("Enemy")){
             var enemyHealth = collider.gameObject.GetComponentInChildren<Health>();
             enemyHealth.TakeDamage(shootingStatsSo.bulletDamage);
+            var obj = Instantiate(particleSystem, transform.position, Quaternion.identity);
         }
-        var obj = Instantiate(particleSystem, transform.position, Quaternion.identity);
+
+        if (collider.CompareTag("Untagged")){
+            var obj = Instantiate(particleSystem, transform.position, Quaternion.identity);
+        }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyStatsSO", menuName = "ScriptableObjects/EnemyStatsSO")]
+[CreateAssetMenu(fileName = "EnemyPrefabsSO", menuName = "ScriptableObjects/EnemyPrefabsSO")]
 public class EnemyPrefabsSO : ScriptableObject{
-    private List<GameObject> enemyPrefabs;
+    public List<GameObject> enemyPrefabs;
 
     public GameObject GetRandomEnemyPrefab(){
         return enemyPrefabs.GetRandom();

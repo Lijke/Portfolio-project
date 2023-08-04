@@ -13,10 +13,7 @@ public class Health : MonoBehaviour{
     }
 
     public void TakeDamage(int dealDamage){
+        takeDamageAction?.Invoke(currentHealth);
         currentHealth -= dealDamage;
-        if (currentHealth <= 0){
-            Debug.Log("[Health] Health <= 0");
-            takeDamageAction?.Invoke(currentHealth);
-        }
     }
 }
