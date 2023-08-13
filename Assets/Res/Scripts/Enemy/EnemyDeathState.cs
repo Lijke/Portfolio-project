@@ -5,6 +5,10 @@ using UnityEngine;
 public class EnemyDeathState : EnemyBaseState{
     protected Animator animator;
     protected EnemyBaseStateManager enemyStateManager;
+    public override void Init(EnemyBaseStateManager enemyBaseStateManager){
+ 
+    }
+
     public override void EnterState(EnemyBaseStateManager enemyStateManager){
         animator = enemyStateManager.GetAnimator();
         animator.SetBool("Death",true);
@@ -20,7 +24,6 @@ public class EnemyDeathState : EnemyBaseState{
 
     public override void UpdateState(EnemyBaseStateManager enemyStateManager){ }
 
-    public override void OnCollisionEnter(EnemyBaseStateManager enemyStateManager, Collider collision){ }
 
     public override void SwitchState(EnemyBaseState enemyBaseState){
         throw new System.NotImplementedException();

@@ -10,8 +10,11 @@ public class EnemyMoveState : EnemyBaseState{
     private FirstPersonController player;
     [SerializeField] private float attackDistance = 0.5f;
 
+    public override void Init(EnemyBaseStateManager enemyBaseStateManager){
+       
+    }
+
     public override void EnterState(EnemyBaseStateManager enemyStateManager){
-        
         navMeshAgent = enemyStateManager.GetNavMeshAgent();
         player = enemyStateManager.GetPlayer();
         this.enemyStateManager = enemyStateManager;
@@ -27,12 +30,12 @@ public class EnemyMoveState : EnemyBaseState{
         }
         if (IsAttackDistance()){
             SwitchState(enemyStateManager.attackState);
+            return;
         }
 
         navMeshAgent.SetDestination(GetPlayerTransform());
     }
 
-    public override void OnCollisionEnter(EnemyBaseStateManager enemyStateManager, Collider collision){ }
 
     private bool IsAttackDistance(){
         if (Vector3.Distance(player.transform.position, enemyStateManager.transform.position) < attackDistance){
@@ -49,7 +52,13 @@ public class EnemyMoveState : EnemyBaseState{
  
 
     public override void SwitchState(EnemyBaseState enemyBaseState){
-        enemyStateManager.GetAnimator().SetBool("Move",false);
         enemyStateManager.SwitchState(enemyBaseState);
+        navMeshAgent.SetDestination(enemyStateManager.transform.root.position);
+        enemyStateManager.GetAnimator().SetBool("Move",false);
+
+    }
+
+    public void SetupRange(float range){
+        attackDistance = range;
     }
 }

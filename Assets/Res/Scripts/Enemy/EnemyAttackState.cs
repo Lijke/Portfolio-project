@@ -1,16 +1,18 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using StarterAssets;
 using UnityEngine;
 
 public class EnemyAttackState : EnemyBaseState{
-    private Animator animator;
-    private string attackParameter;
-    private EnemyBaseStateManager enemyStateManager;
-    
-    public override void EnterState(EnemyBaseStateManager enemyStateManager){
-        if (this.enemyStateManager == null){
-            this.enemyStateManager = enemyStateManager;
+    protected Animator animator;
+    protected string attackParameter;
+    protected EnemyBaseStateManager enemyStateManager;
+    protected FirstPersonController player => FirstPersonController.Instance;
+
+    public override void Init(EnemyBaseStateManager enemyBaseStateManager){
+        if (enemyStateManager == null){
+            enemyStateManager = enemyBaseStateManager;
         }
 
         if (animator == null){
@@ -20,7 +22,9 @@ public class EnemyAttackState : EnemyBaseState{
         if (String.IsNullOrEmpty(attackParameter)){
             attackParameter = enemyStateManager.enemyAnimatorController.enemyAnimatorHashManager.attackParameter;
         }
+    }
 
+    public override void EnterState(EnemyBaseStateManager enemyStateManager){
         this.enemyStateManager.enemyAnimatorController.behaviourSolver.OnEnter.AddListener(DamagePlayer);
         this.enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.AddListener(ChangeState);
         animator.SetBool("Attack", true);
@@ -43,11 +47,7 @@ public class EnemyAttackState : EnemyBaseState{
             GameEvents.Player.OnPlayerTakeDamage(damage);
         }
     }
-
-    public override void OnCollisionEnter(EnemyBaseStateManager enemyStateManager, Collider collision){
-
-    }
-
+    
     public void DamagePlayer(){
         var damage = this.enemyStateManager.enemyStatsSo.damage;
         enemyStateManager.GetPlayer().health.TakeDamage(damage);

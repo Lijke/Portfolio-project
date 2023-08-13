@@ -1,4 +1,5 @@
-﻿using StarterAssets;
+﻿using System;
+using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,6 +16,14 @@ public class EnemyBaseStateManager : MonoBehaviour{
     public EnemyStatsSO enemyStatsSo;
     public Health health;
     public UiHealthBar uiHealthBar;
+    public EnemyShooting enemyShooting;
+
+    public virtual void Awake(){
+       moveState.Init(this);
+       enemyDeathState.Init(this);
+       enemyDeathState.Init(this);
+    }
+
     public NavMeshAgent GetNavMeshAgent(){
         return navMeshAgent;
     }
