@@ -16,4 +16,9 @@ public class Health : MonoBehaviour{
         takeDamageAction?.Invoke(currentHealth);
         currentHealth -= dealDamage;
     }
+
+    public void Setup(){
+        currentHealth = maxHealth;
+        takeDamageAction?.Invoke(currentHealth);
+    }
 }

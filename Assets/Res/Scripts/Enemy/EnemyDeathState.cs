@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyDeathState : EnemyBaseState{
     protected Animator animator;
-    protected EnemyStateManager enemyStateManager;
-    public override void EnterState(EnemyStateManager enemyStateManager){
+    protected EnemyBaseStateManager enemyStateManager;
+    public override void EnterState(EnemyBaseStateManager enemyStateManager){
         animator = enemyStateManager.GetAnimator();
         animator.SetBool("Death",true);
         this.enemyStateManager = enemyStateManager;
@@ -14,15 +14,13 @@ public class EnemyDeathState : EnemyBaseState{
     }
 
     private void DeathEndState(StateInfo arg0){
-
         enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.RemoveListener(DeathEndState);
-    
 
     }
 
-    public override void UpdateState(EnemyStateManager enemyStateManager){ }
+    public override void UpdateState(EnemyBaseStateManager enemyStateManager){ }
 
-    public override void OnCollisionEnter(EnemyStateManager enemyStateManager, Collider collision){ }
+    public override void OnCollisionEnter(EnemyBaseStateManager enemyStateManager, Collider collision){ }
 
     public override void SwitchState(EnemyBaseState enemyBaseState){
         throw new System.NotImplementedException();

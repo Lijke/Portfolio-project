@@ -31,6 +31,10 @@ public class EnemySpawner : MonoBehaviour{
         if (prefab != null){
             prefab.SetActive(true);
             prefab.transform.position = GetSpawnPosition();
+            var healthScript = prefab.GetComponentInChildren<Health>();
+            healthScript.Setup();
+            var enemyManager = prefab.GetComponentInChildren<EnemyBaseStateManager>();
+            enemyManager.SetStateAfterDeath();
         }
     }
 

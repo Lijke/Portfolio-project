@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpawnerStatsSO
   m_EditorClassIdentifier: 
   distanceFromPlayer: 50
-  maxEnemyCount: 50
+  maxEnemyCount: 10

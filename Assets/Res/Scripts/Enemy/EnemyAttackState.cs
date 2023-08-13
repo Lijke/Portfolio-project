@@ -6,9 +6,9 @@ using UnityEngine;
 public class EnemyAttackState : EnemyBaseState{
     private Animator animator;
     private string attackParameter;
-    private EnemyStateManager enemyStateManager;
+    private EnemyBaseStateManager enemyStateManager;
     
-    public override void EnterState(EnemyStateManager enemyStateManager){
+    public override void EnterState(EnemyBaseStateManager enemyStateManager){
         if (this.enemyStateManager == null){
             this.enemyStateManager = enemyStateManager;
         }
@@ -26,7 +26,7 @@ public class EnemyAttackState : EnemyBaseState{
         animator.SetBool("Attack", true);
     }
 
-    public override void UpdateState(EnemyStateManager enemyStateManager){ }
+    public override void UpdateState(EnemyBaseStateManager enemyStateManager){ }
 
     private void ChangeState(StateInfo info){
         if (info.info.IsTag("Attack")){
@@ -44,7 +44,7 @@ public class EnemyAttackState : EnemyBaseState{
         }
     }
 
-    public override void OnCollisionEnter(EnemyStateManager enemyStateManager, Collider collision){
+    public override void OnCollisionEnter(EnemyBaseStateManager enemyStateManager, Collider collision){
 
     }
 
@@ -56,8 +56,8 @@ public class EnemyAttackState : EnemyBaseState{
 
 
     public override void SwitchState(EnemyBaseState enemyBaseState){
-        this.enemyStateManager.enemyAnimatorController.behaviourSolver.OnEnter.RemoveListener(DamagePlayer);
-        this.enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.RemoveListener(ChangeState);
+        enemyStateManager.enemyAnimatorController.behaviourSolver.OnEnter.RemoveListener(DamagePlayer);
+        enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.RemoveListener(ChangeState);
         animator.SetBool(attackParameter,false);
         enemyStateManager.SwitchState(enemyBaseState);
     }
