@@ -39,7 +39,12 @@ public class EnemyStateManager : MonoBehaviour{
         if (takenDamage <= 0){
             currentState = enemyDeathState;
             currentState.EnterState(this);
+            IvokeDeadEvent();
         }
+    }
+
+    private void IvokeDeadEvent(){
+        GameEvents.Enemy.OnEnemyDead();
     }
 
     public void OnDeath(){

@@ -10,11 +10,13 @@ public class EnemyDeathState : EnemyBaseState{
         animator.SetBool("Death",true);
         this.enemyStateManager = enemyStateManager;
         enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.AddListener(DeathEndState);
+        enemyStateManager.OnDeath();
     }
 
     private void DeathEndState(StateInfo arg0){
+
         enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.RemoveListener(DeathEndState);
-        enemyStateManager.OnDeath();
+    
 
     }
 

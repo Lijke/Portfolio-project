@@ -5,7 +5,11 @@ using UnityEngine;
 
 public static class GameEvents  {
     public static class Enemy{
-        
+        public static Action onEnemyDead;
+
+        public static void OnEnemyDead(){
+            onEnemyDead?.Invoke();
+        }
     }
 
     public static class Player{
