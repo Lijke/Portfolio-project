@@ -9,15 +9,22 @@ public class EnemyShooting : MonoBehaviour{
     public float bulletTimeBeetwenShoots = 0.05f;
     private bool canShoot = true;
     public void Shoot(FirstPersonController player){
-        Vector3 direction = player.transform.position-transform.position;
-        direction .Normalize();
-        float rotation = Mathf.Atan2(direction .y, direction .x) * Mathf.Rad2Deg;
-        var spawnedBullet =Instantiate(bulletPrefab, shootPoint.localPosition, Quaternion.Euler(0f, 0f, rotation - 90));
-        spawnedBullet.GetComponent<Rigidbody>().velocity = shootPoint.forward * 10;
+        RotateTowardsPlayer(player);
+        var spawnedBullet =Instantiate(bulletPrefab);
+        var bulletScript = spawnedBullet.GetComponent<EnemyBullet>();
+        spawnedBullet.transform.position = shootPoint.transform.position;
+        spawnedBullet.GetComponent<Rigidbody>().velocity = transform.forward * 10;
         canShoot = false;
        
     }
-    
-    
 
+    private void RotateTowardsPlayer(FirstPersonController player){
+        Vector3 directionToPlayer = player.transform.position - transform.position;
+
+        // Calculate the rotation required to look at the player
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+        // Smoothly rotate the object towards the player
+        transform.root.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+    }
 }

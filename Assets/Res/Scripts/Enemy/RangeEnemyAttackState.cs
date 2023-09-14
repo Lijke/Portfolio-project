@@ -5,10 +5,10 @@ using Cysharp.Threading.Tasks;
 using StarterAssets;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "RangeEnemyAttackState")]
 public class RangeEnemyAttackState : EnemyAttackState{
     private EnemyShooting enemyShooting;
     public float bulletTimeBeetwenShoots = 1f;
-    private bool canShoot = true;
     private CancellationToken cts;
 
     public override void Init(EnemyBaseStateManager enemyBaseStateManager){

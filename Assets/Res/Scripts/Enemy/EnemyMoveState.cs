@@ -4,11 +4,13 @@ using StarterAssets;
 using UnityEngine;
 using UnityEngine.AI;
 
+[CreateAssetMenu(fileName = "EnemyMoveState")]
 public class EnemyMoveState : EnemyBaseState{
     private EnemyBaseStateManager enemyStateManager;
     private NavMeshAgent navMeshAgent;
     private FirstPersonController player;
     [SerializeField] private float attackDistance = 0.5f;
+    [SerializeField] private bool isRanged;
 
     public override void Init(EnemyBaseStateManager enemyBaseStateManager){
        

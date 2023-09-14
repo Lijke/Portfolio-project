@@ -48,13 +48,6 @@ public class EnemyAttackState : EnemyBaseState{
         }
     }
     
-    public void DamagePlayer(){
-        var damage = this.enemyStateManager.enemyStatsSo.damage;
-        enemyStateManager.GetPlayer().health.TakeDamage(damage);
-        GameEvents.Player.OnPlayerTakeDamage(damage);
-    }
-
-
     public override void SwitchState(EnemyBaseState enemyBaseState){
         enemyStateManager.enemyAnimatorController.behaviourSolver.OnEnter.RemoveListener(DamagePlayer);
         enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.RemoveListener(ChangeState);

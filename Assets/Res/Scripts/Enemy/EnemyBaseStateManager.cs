@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class EnemyBaseStateManager : MonoBehaviour{
     private EnemyBaseState currentState;
-    public EnemyMoveState moveState= new ();
-    public EnemyDeathState enemyDeathState = new();
-    public EnemyAttackState attackState = new();
+    public EnemyMoveState moveState;
+    public EnemyDeathState enemyDeathState;
+    public EnemyAttackState attackState;
     
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Animator animator;
@@ -19,9 +19,9 @@ public class EnemyBaseStateManager : MonoBehaviour{
     public EnemyShooting enemyShooting;
 
     public virtual void Awake(){
-       moveState.Init(this);
+        moveState.Init(this);
        enemyDeathState.Init(this);
-       enemyDeathState.Init(this);
+       attackState.Init(this);
     }
 
     public NavMeshAgent GetNavMeshAgent(){

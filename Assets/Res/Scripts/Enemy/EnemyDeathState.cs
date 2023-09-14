@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "EnemyDeathState")]
 public class EnemyDeathState : EnemyBaseState{
     protected Animator animator;
     protected EnemyBaseStateManager enemyStateManager;

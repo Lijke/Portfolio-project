@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour{
+public interface ITargetable{
+    public void Hit(int damage);
+}
+
+public class Health : MonoBehaviour, ITargetable{
     public int currentHealth;
     public int maxHealth;
     public Action<int> takeDamageAction;
@@ -20,5 +24,9 @@ public class Health : MonoBehaviour{
     public void Setup(){
         currentHealth = maxHealth;
         takeDamageAction?.Invoke(currentHealth);
+    }
+
+    public void Hit(int damage){
+        TakeDamage(damage);
     }
 }
