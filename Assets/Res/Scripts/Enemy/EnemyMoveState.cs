@@ -6,57 +6,51 @@ using UnityEngine.AI;
 
 [CreateAssetMenu(fileName = "EnemyMoveState")]
 public class EnemyMoveState : EnemyBaseState{
-    private EnemyBaseStateManager enemyStateManager;
-    private NavMeshAgent navMeshAgent;
-    private FirstPersonController player;
     [SerializeField] private float attackDistance = 0.5f;
     [SerializeField] private bool isRanged;
 
-    public override void Init(EnemyBaseStateManager enemyBaseStateManager){
-       
-    }
+    
 
-    public override void EnterState(EnemyBaseStateManager enemyStateManager){
-        navMeshAgent = enemyStateManager.GetNavMeshAgent();
-        player = enemyStateManager.GetPlayer();
-        this.enemyStateManager = enemyStateManager;
-        if (IsAttackDistance()){
-            SwitchState(enemyStateManager.attackState);
+    public override void EnterState(EnemyBaseStateManager enemyManager){
+        var enemyStateManager = enemyManager;
+        if (IsAttackDistance(enemyStateManager)){
+            SwitchStateTemp(enemyStateManager.attackState, enemyStateManager);
         }
         enemyStateManager.GetAnimator().SetBool("Move",true);
+        var nav = enemyStateManager.GetNavMeshAgent();
+        SetNavMeshDestination(nav, enemyManager);
+    }
+
+    private void SetNavMeshDestination(NavMeshAgent nav, EnemyBaseStateManager enemyBaseStateManager){
+        nav.SetDestination(GetPlayerTransform(enemyBaseStateManager));
     }
 
     public override void UpdateState(EnemyBaseStateManager enemyStateManager){
-        if (navMeshAgent == null && player == null){
-            return;
+        if (IsAttackDistance(enemyStateManager)){
+            SwitchStateTemp(enemyStateManager.attackState, enemyStateManager);
         }
-        if (IsAttackDistance()){
-            SwitchState(enemyStateManager.attackState);
-            return;
-        }
-
-        navMeshAgent.SetDestination(GetPlayerTransform());
     }
 
+    public override void SwitchState(EnemyBaseState enemyBaseStateManager){ }
 
-    private bool IsAttackDistance(){
-        if (Vector3.Distance(player.transform.position, enemyStateManager.transform.position) < attackDistance){
+
+    private bool IsAttackDistance(EnemyBaseStateManager enemyBaseStateManager){
+        if (Vector3.Distance(GetPlayerTransform(enemyBaseStateManager), enemyBaseStateManager.transform.position) < attackDistance){
             return true;
         }
 
         return false;
     }
 
-    private Vector3 GetPlayerTransform(){
-        return player.transform.position;
+    private Vector3 GetPlayerTransform(EnemyBaseStateManager enemyBaseStateManager){
+        return enemyBaseStateManager.GetPlayer().transform.position;
     }
 
  
 
-    public override void SwitchState(EnemyBaseState enemyBaseState){
-        enemyStateManager.SwitchState(enemyBaseState);
-        navMeshAgent.SetDestination(enemyStateManager.transform.root.position);
-        enemyStateManager.GetAnimator().SetBool("Move",false);
+    public  void SwitchStateTemp(EnemyBaseState enemyBaseState, EnemyBaseStateManager enemyBaseStateManager){
+        enemyBaseStateManager.SwitchState(enemyBaseState);
+        enemyBaseStateManager.GetAnimator().SetBool("Move",false);
 
     }
 

@@ -41,31 +41,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.8
+      value: -9.606609
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.353
+      value: -2.4999995
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.48
+      value: 1.7852056
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalRotation.w
@@ -202,6 +202,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3ab02ca7d06a04b83dac705581a1f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveState: {fileID: 11400000, guid: 7e4d50b3b5d302c46ba18348500de23b, type: 2}
+  enemyDeathState: {fileID: 11400000, guid: 4ee722eb5c4a8444fb103af70138e376, type: 2}
+  attackState: {fileID: 11400000, guid: bcb17763c7d61bb4aae0edb96474b719, type: 2}
   navMeshAgent: {fileID: 957755223185922649}
   animator: {fileID: 4183989950948304469}
   enemyAnimatorController: {fileID: 6066277624215827934}

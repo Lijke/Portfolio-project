@@ -17,13 +17,7 @@ public class EnemyBaseStateManager : MonoBehaviour{
     public Health health;
     public UiHealthBar uiHealthBar;
     public EnemyShooting enemyShooting;
-
-    public virtual void Awake(){
-        moveState.Init(this);
-       enemyDeathState.Init(this);
-       attackState.Init(this);
-    }
-
+    
     public NavMeshAgent GetNavMeshAgent(){
         return navMeshAgent;
     }
@@ -74,5 +68,15 @@ public class EnemyBaseStateManager : MonoBehaviour{
     public void SetStateAfterDeath(){
         currentState = moveState;
         currentState.EnterState(this);
+    }
+
+    public void SetupOnExitListener(){
+        enemyAnimatorController.behaviourSolver.OnExit.AddListener(ChangeState);
+    }
+
+    private void ChangeState(StateInfo info){
+        if (info.info.IsTag("Attack")){
+            SwitchState(moveState);
+        }
     }
 }

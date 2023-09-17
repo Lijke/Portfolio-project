@@ -252,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4136592400650912, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.124
+      value: 0.1953
       objectReference: {fileID: 0}
     - target: {fileID: 4136592400650912, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
       propertyPath: m_LocalPosition.y
@@ -300,7 +300,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4136592400650912, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
       insertIndex: -1
       addedObject: {fileID: 688952371}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1420827811599730, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1566591352}
   m_SourcePrefab: {fileID: 100100000, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
 --- !u!1 &688952370
 GameObject:
@@ -555,6 +558,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1566591351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1420827811599730, guid: aaad727b67e004b408be5595d3d8a829, type: 3}
+  m_PrefabInstance: {fileID: 424581271}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1566591352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566591351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc41f886992058d45a13e8a8ea9492ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 688952371}
 --- !u!1 &1606841375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,8 +1069,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fac2159eb06040fea9b11ca4488dc841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: -669689054581279731, guid: 3d61d41bb7ea123419c9235ea8b380c9, type: 3}
-  buleltSpawnPoint: {fileID: 688952371}
+  _particlePlayer: {fileID: 1566591352}
+  hitParticle: {fileID: 19800000, guid: 3156817f64ec68948ad6bb26569b9ef5, type: 3}
 --- !u!1001 &5393215579111688471
 PrefabInstance:
   m_ObjectHideFlags: 0

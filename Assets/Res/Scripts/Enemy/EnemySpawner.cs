@@ -2,8 +2,32 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using StarterAssets;
 using UnityEngine;
+using UnityEngine.AI;
+using Vector3 = UnityEngine.Vector3;
+
+public class NavMeshPointFinder {
+
+    public bool IsTransformOnNavMesh(Vector3 position, float maxDistance ){
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(position, out hit, maxDistance, NavMesh.AllAreas)){
+            return true;
+        }
+
+        return false;
+    }
+
+    public Vector3 GetNearestNavVector3FromPosition(Vector3 position){
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(position, out hit, Mathf.Infinity, NavMesh.AllAreas)){
+            return hit.position;
+        }
+
+        return position;
+    }
+}
 
 public class EnemySpawner : MonoBehaviour{
     public EnemyPrefabsSO enemyPrefabsSo;
@@ -11,6 +35,7 @@ public class EnemySpawner : MonoBehaviour{
     public List<GameObject> pooledObjects;
     public FirstPersonController player;
     public static EnemySpawner Instance;
+    public NavMeshPointFinder navMeshPoint = new NavMeshPointFinder();
 
     private void Awake(){
         Instance = this;
@@ -63,7 +88,11 @@ public class EnemySpawner : MonoBehaviour{
     private Vector3 GetSpawnPosition(){
         var playerPos = player.transform.position;
         var distanceFromPlayer = spawnerStatsSo.distanceFromPlayer;
-        return player.transform.position + (UnityEngine.Random.insideUnitSphere * distanceFromPlayer);
+        var nearestPos = navMeshPoint.GetNearestNavVector3FromPosition(player.transform.position + (UnityEngine.Random.insideUnitSphere * distanceFromPlayer));
+#if UNITY_EDITOR
+        Debug.DrawLine(nearestPos, nearestPos + Vector3.up * 100, Color.red,10f);
+#endif
+        return nearestPos;
     }
 
     public GameObject GetPooledObject(){

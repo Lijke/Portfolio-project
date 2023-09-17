@@ -3,10 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ITargetable{
-    public void Hit(int damage);
-}
-
 public class Health : MonoBehaviour, ITargetable{
     public int currentHealth;
     public int maxHealth;

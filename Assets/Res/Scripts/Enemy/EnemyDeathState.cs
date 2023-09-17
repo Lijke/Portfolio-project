@@ -6,16 +6,14 @@ using UnityEngine;
 public class EnemyDeathState : EnemyBaseState{
     protected Animator animator;
     protected EnemyBaseStateManager enemyStateManager;
-    public override void Init(EnemyBaseStateManager enemyBaseStateManager){
- 
-    }
 
-    public override void EnterState(EnemyBaseStateManager enemyStateManager){
-        animator = enemyStateManager.GetAnimator();
+
+    public override void EnterState(EnemyBaseStateManager enemyManager){
+        animator = enemyManager.GetAnimator();
         animator.SetBool("Death",true);
-        this.enemyStateManager = enemyStateManager;
-        enemyStateManager.enemyAnimatorController.behaviourSolver.OnExit.AddListener(DeathEndState);
-        enemyStateManager.OnDeath();
+        this.enemyStateManager = enemyManager;
+        enemyManager.enemyAnimatorController.behaviourSolver.OnExit.AddListener(DeathEndState);
+        enemyManager.OnDeath();
     }
 
     private void DeathEndState(StateInfo arg0){
