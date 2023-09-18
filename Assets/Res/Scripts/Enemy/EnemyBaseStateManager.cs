@@ -75,6 +75,7 @@ public class EnemyBaseStateManager : MonoBehaviour{
     }
 
     private void ChangeState(StateInfo info){
+        Debug.LogError("change state to move");
         if (info.info.IsTag("Attack")){
             SwitchState(moveState);
         }

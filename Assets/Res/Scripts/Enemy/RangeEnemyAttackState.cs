@@ -7,40 +7,19 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "RangeEnemyAttackState")]
 public class RangeEnemyAttackState : EnemyAttackState{
-    private EnemyShooting enemyShooting;
-    public float bulletTimeBeetwenShoots = 1f;
-    private CancellationToken cts;
-
     
-    public override void EnterState(EnemyBaseStateManager enemyStateManager){
-        // animator.SetBool("Attack", true);
-        // enemyShooting.Shoot(player);
-        // CheckState();
+    public override void EnterState(EnemyBaseStateManager enemyManager){
+        if (enemyManager.enemyShooting.CanShoot()){
+            enemyManager.enemyShooting.PrepareShoot(enemyManager.GetPlayer());
+        }
+
+        ChangeState(enemyManager);
+    }
+
+    private void ChangeState(EnemyBaseStateManager enemyManager){
+        enemyManager.SwitchState(enemyManager.moveState);
     }
 
     public override void UpdateState(EnemyBaseStateManager enemyStateManager){ }
-
-    private async void CheckState(){
-        // await ReloadTimer();
-        // Debug.Log("Reload");
-        // if (!IsPlayerInShootingRange()){
-        //     SwitchState(enemyStateManager.moveState);
-        // }
-        // else{
-        //     EnterState(enemyStateManager);
-        // }
-    }
-
-    private async UniTask ReloadTimer(){
-        await UniTask.Delay(TimeSpan.FromSeconds(bulletTimeBeetwenShoots));
-    }
-
-    private bool IsPlayerInShootingRange(){
-        // var distance = Vector3.Distance(player.transform.position, enemyStateManager.transform.root.position);
-        // if (distance < 10f){
-        //     return true;
-        // }
-
-        return false;
-    }
+    
 }

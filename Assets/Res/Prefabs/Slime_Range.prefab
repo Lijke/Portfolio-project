@@ -41,7 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalScale.x
@@ -57,15 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.3737202
+      value: -1.8051946
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.496
+      value: -2.4999998
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.8736596
+      value: 6.9748673
       objectReference: {fileID: 0}
     - target: {fileID: 67686575807827528, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_LocalRotation.w
@@ -99,6 +99,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1300550229644504399, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
+      propertyPath: enemyAnimatorController
+      value: 
+      objectReference: {fileID: 22068605643958469}
     - target: {fileID: 2839574050715212618, guid: 7f5bd99a3a526f348beffb5467292315, type: 3}
       propertyPath: m_Radius
       value: 0.89
@@ -185,7 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6942120909525664148, guid: 830fc9466a4298c4288ff6dc2832714c, type: 3}
   shootPoint: {fileID: 5277976601330288958}
-  bulletTimeBeetwenShoots: 0.05
+  bulletTimeBeetwenShoots: 1
 --- !u!114 &3304641284804345251
 MonoBehaviour:
   m_ObjectHideFlags: 0

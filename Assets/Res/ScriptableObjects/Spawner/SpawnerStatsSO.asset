@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961acab76977434bb3f22c773687e65, type: 3}
   m_Name: SpawnerStatsSO
   m_EditorClassIdentifier: 
-  distanceFromPlayer: 50
-  maxEnemyCount: 10
+  distanceFromPlayer: 20
+  maxEnemyCount: 5

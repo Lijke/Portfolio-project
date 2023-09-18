@@ -10,6 +10,7 @@ public class EnemyAnimatorController : MonoBehaviour{
     int lastEnterTagHash;
     private int lastExitTagHash;
     public EnemyAnimatorHashManager enemyAnimatorHashManager;
+    [SerializeField] private Animator enemyAnimatorController;
     private void Awake(){
         AddForEnterState(SetEnterState);
         AddForExitState(SetExitState);
@@ -30,5 +31,10 @@ public class EnemyAnimatorController : MonoBehaviour{
     void SetExitState(StateInfo info){
         lastExitTagHash = info.info.tagHash;
         enemyAnimatorHashManager.SetExitState(lastExitTagHash);
+    }
+
+
+    public void SetupAnimation(string val){
+        enemyAnimatorController.SetBool(val,true);
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using StarterAssets;
@@ -6,16 +7,33 @@ using UnityEngine;
 public class EnemyShooting : MonoBehaviour{
     public GameObject bulletPrefab;
     public Transform shootPoint;
-    public float bulletTimeBeetwenShoots = 0.05f;
+    public float bulletTimeBeetwenShoots = 0.3f;
     private bool canShoot = true;
-    public void Shoot(FirstPersonController player){
+
+    private void Awake(){
+        canShoot = true;
+    }
+
+    public void PrepareShoot(FirstPersonController player){
         RotateTowardsPlayer(player);
+        if (canShoot){
+            canShoot = false;
+            ShootProjectile();
+        }
+     
+      
+    }
+
+    private void ShootProjectile(){
         var spawnedBullet =Instantiate(bulletPrefab);
         var bulletScript = spawnedBullet.GetComponent<EnemyBullet>();
         spawnedBullet.transform.position = shootPoint.transform.position;
         spawnedBullet.GetComponent<Rigidbody>().velocity = transform.forward * 10;
-        canShoot = false;
-       
+        Invoke("DelayTime", bulletTimeBeetwenShoots);
+    }
+
+    public void DelayTime(){
+        canShoot = true;
     }
 
     private void RotateTowardsPlayer(FirstPersonController player){
@@ -26,5 +44,9 @@ public class EnemyShooting : MonoBehaviour{
 
         // Smoothly rotate the object towards the player
         transform.root.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 100f * Time.deltaTime);
+    }
+
+    public bool CanShoot(){
+        return canShoot;
     }
 }

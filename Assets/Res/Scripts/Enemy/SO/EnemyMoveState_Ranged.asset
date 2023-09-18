@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d539c6a9bd03b24d8e976aff60744bc, type: 3}
   m_Name: EnemyMoveState_Ranged
   m_EditorClassIdentifier: 
-  attackDistance: 50
+  attackDistance: 10
   isRanged: 1
